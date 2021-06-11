@@ -15,6 +15,14 @@ import javax.persistence.Table;
 @Table(name = "tags")
 public class Tags {
 	
+	public Set<Articolo> getArticolo() {
+		return articolo;
+	}
+
+	public void setArticolo(Set<Articolo> articolo) {
+		this.articolo = articolo;
+	}
+
 	@Id
 	@Column( name = "tag", length = 25 )
 	private String tag;
