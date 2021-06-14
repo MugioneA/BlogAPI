@@ -157,7 +157,7 @@ public ResponseEntity<?> getAllArticoliAutore(@RequestParam(name= "autore",requi
 			token = token.replaceAll("Bearer ", "");
 			 Long iduser = jwtTokenUtil.getUserIdFromToken(token);
 			if(blogarticolo.update(id, art, iduser)) {
-				return new  ResponseEntity<>(HttpStatus.OK);
+				return new  ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}
 			return new  ResponseEntity<>(HttpStatus.NOT_FOUND);		
 	}
