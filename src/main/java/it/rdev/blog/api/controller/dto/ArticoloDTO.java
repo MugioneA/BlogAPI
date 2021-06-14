@@ -1,8 +1,10 @@
 package it.rdev.blog.api.controller.dto;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 import it.rdev.blog.api.dao.entity.Categoria;
+import it.rdev.blog.api.dao.entity.Tags;
 import it.rdev.blog.api.dao.entity.User;
 
 public class ArticoloDTO {
@@ -14,7 +16,14 @@ public class ArticoloDTO {
 	private boolean stato;
 	private LocalDateTime datacreaz;
 	private LocalDateTime datapub;
+	public Set<Tags> getTag() {
+		return tag;
+	}
+	public void setTag(Set<Tags> tag) {
+		this.tag = tag;
+	}
 	private LocalDateTime datamod;
+	private Set<Tags> tag;
 	public User getUser() {
 		return user;
 	}

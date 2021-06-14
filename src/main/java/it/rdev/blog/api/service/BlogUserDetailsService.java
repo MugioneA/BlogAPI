@@ -28,8 +28,19 @@ public class BlogUserDetailsService implements UserDetailsService {
 		if (user == null) {
 			throw new UsernameNotFoundException("Utente non trovato per username: " + username);
 		}
-		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
+		return new BlogUserDetails(user.getId(), user.getUsername(), user.getPassword(),
 				new ArrayList<>());
+	}
+	
+	
+	public User findByUsername (String username) {
+		User user = userDao.findByUsername(username);
+		if (user == null) {
+			throw new UsernameNotFoundException("Utente non trovato per username: " + username);
+		}
+		
+		return user;
+
 	}
 	
 	public User save(UserDTO user) {

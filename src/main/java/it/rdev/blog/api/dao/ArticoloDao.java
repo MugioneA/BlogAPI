@@ -20,9 +20,17 @@ public interface ArticoloDao extends CrudRepository<Articolo, Integer> {
 	@Query("Select a from Articolo a where a.titolo like :titolo OR a.sottotitolo like :titolo OR a.testo like :titolo")
 	//Set<Articolo> findByTitoloOrSottotitoloOrTesto(String titolo, String sottotilo, String testo);	
 	Set<Articolo> ricercaPerTesto(@Param("titolo") String titolo);
-	//@Query("Select a from Articolo where a.id=:id")
+	//@Query("Select a from Articolo a where a.id=:id")
 	Articolo findById(long id);
 //	@Query("Select a from Articolo a")
 	//Set<Articolo> findAll();
 	//Set<Articolo> findByTag(String tag);
+
+	
+	@Query("Delete from Articolo a where a.id=:id")
+	void DeleteById(@Param("id")  long id);
+	
+	@Query("Select a from Articolo a where a.stato=:valore")
+	Set<Articolo> findByStato(@Param("valore")  long value);
+	
 }
