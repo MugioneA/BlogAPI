@@ -101,6 +101,19 @@ public class BlogArticoloDatailService {
 		arti.setUsers(art.getUser());
 		articoloDao.save(arti);
 	}
+	public void savesB(ArticoloDTO art) {
+		Articolo arti = new Articolo();
+		arti.setTesto(art.getTesto());
+		arti.setCategoria(art.getCategoria());
+		arti.setDatacreaz(art.getDatacreaz());
+		arti.setDatapub(art.getDatapub());
+		arti.setDatamod(art.getDatamod());
+		arti.setSottotitolo(art.getSottotitolo());
+		arti.setStato(false);
+		arti.setTag(art.getTag());
+		arti.setUsers(art.getUser());
+		articoloDao.save(arti);
+	}
 	
 	// metodo che permette il delete di un articolo controllando che chi lo vuole cancellare ne sia il propietraio
 	public boolean Delete(final Long id,final Long iduser) {

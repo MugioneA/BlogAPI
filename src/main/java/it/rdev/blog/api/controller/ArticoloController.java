@@ -54,6 +54,35 @@ public ResponseEntity<?> getAllArticoliCategoria(@RequestParam(name= "categoria"
 		}		
 	}
 	
+	
+	@PostMapping("/api/articolo")
+	public  ResponseEntity<?> setArticolo( @RequestHeader(name = "Authorization") String token, @RequestBody ArticoloDTO art){
+		if(token!= null && token.startsWith("Bearer")) {
+			token = token.replaceAll("Bearer ", "");
+            String username = jwtTokenUtil.getUsernameFromToken(token);
+            User user = userDetailsService.findByUsername(username); // mi basta controllare che l' utente sia registrato per creare un qualsiasi articolo
+			if(user!= null && user.getId()>0) { // controllo se e' nullo0
+				if(art.getCategoria()!=null && art.getDatacreaz()!=null && art.getDatamod()!= null  && art.getDatapub()!= null && art.getSottotitolo()!=null && art.getTesto()!=null && art.getUser()!=null)
+				{
+				blogarticolo.savesB(art);		// chiamo il metodo per fare l'insedrt	
+				return new  ResponseEntity<>(HttpStatus.OK);
+				}
+				else 
+				{
+					return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+				}
+			
+			}
+			
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		    
+
+			}
+		return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		
+	
+		
+	}
 	// metodo per ricerca di un articolo partendo dall'username 
 	@GetMapping({ "/api/articoliautore" })
 public ResponseEntity<?> getAllArticoliAutore(@RequestParam(name= "autore",required = true) final String nome) {		
